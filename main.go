@@ -26,18 +26,12 @@ func main() {
 	})
 
 	m.Get("/list/:label", func(params martini.Params, r render.Render) {
-		label := params["label"]
-		list, err := dbQuery(label)
+		tmplList, err := getListValues(params["label"], mainLogger)
 		if err != nil {
 			mainLogger.Err("Error: db query went bad: " + err.Error())
+			r.HTML(500, "index", nil)
 		}
-
-		tmplList := make([]TodoItem, len(list))
-		for i, todo := range list {
-			tmplList[i].Id = todo.Id.Hex()
-			tmplList[i].Text = todo.Text
-		}
-		r.HTML(200, "list", TempList{Label: label, Todos: tmplList})
+		r.HTML(200, "list", TempList{Label: params["label"], Todos: tmplList})
 	})
 
 	// API
