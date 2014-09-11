@@ -24,14 +24,17 @@ func apiGet(label string, todo string, mainLogger *syslog.Writer) string {
 	}
 
 	todos := make([]TodoItem, len(list))
+	count := 0
 	for i, todo := range list {
 		todos[i].Text = todo.Text
 		todos[i].Id = todo.Id.Hex()
+		count += 1
 	}
 	jsonOut := struct {
 		Label string
+		Count int
 		Todos []TodoItem
-	}{label, todos}
+	}{label, count, todos}
 	out, err := json.Marshal(jsonOut)
 	if err != nil {
 		mainLogger.Err("Error: could not properly construct json")
