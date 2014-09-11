@@ -1,6 +1,10 @@
 # gotodo
 ### Name's getting replaced, I promise
 
+## URL
+
+Coming soon.
+
 ## What is it?
 
 Zero authentication todo "service".
