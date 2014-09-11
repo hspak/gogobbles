@@ -7,11 +7,12 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-type Todo struct {
-	Text string
+type MongoTodo struct {
+	Id   bson.ObjectId `bson:"_id"`
+	Text string        `bson:"text"`
 }
 
-func dbInsert(label string, todo Todo) {
+func dbInsert(label string, todo MongoTodo) {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)
@@ -24,7 +25,7 @@ func dbInsert(label string, todo Todo) {
 	}
 }
 
-func dbRemove(label string, todo Todo) error {
+func dbRemove(label string, todo MongoTodo) error {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)
@@ -32,20 +33,20 @@ func dbRemove(label string, todo Todo) error {
 	defer session.Close()
 
 	c := session.DB("gotest").C(label)
-	if err = c.Remove(bson.M{"text": todo.Text}); err != nil {
+	if err = c.Remove(bson.M{"_id": todo.Id}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func dbQuery(label string) []Todo {
+func dbQuery(label string) []MongoTodo {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)
 	}
 	defer session.Close()
 
-	results := make([]Todo, 0)
+	results := make([]MongoTodo, 0)
 	c := session.DB("gotest").C(label)
 	if err = c.Find(bson.M{}).All(&results); err != nil {
 		log.Fatal(err)

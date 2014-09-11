@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ .Label }}</title>
+  </head>
+  <body>
+    <p> {{ .Label }}
+    <ul id="theList">
+    {{ range .Todos }}
+      <button id="but{{ .Id }}" type="button" onclick="removeTodo({{ .Id }})">Remove</button>
+      <li id="todo{{ .Id }}">{{ .Text }}</li>
+    {{ end }}
+    </ul>
+
+    <input id="addBox" type="text" onkeydown="addTodo()"></input>
+
+    <script type="text/javascript">
+      var label = {{ .Label }}
+      var todos = {{ .Todos }}
+    </script>
+    <script src="js/list.js" type="text/javascript"></script>
+  </body>
+</html>
