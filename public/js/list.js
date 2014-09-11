@@ -2,7 +2,7 @@ function removeTodo(itemId) {
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", "http://" + window.location.host + "/remove/" + document.title + "/" + itemId, false);
+  xmlHttp.open("GET", "http://" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
   console.log(xmlHttp.responseText);
   
@@ -24,7 +24,7 @@ function addTodo() {
     document.getElementById("addBox").value = '';
 
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "http://" + window.location.host + "/add/" + document.title + "/" + input, false);
+    xmlHttp.open("GET", "http://" + window.location.host + "/api/add/" + document.title + "/" + input, false);
     xmlHttp.send(null);
     newId = xmlHttp.responseText
 

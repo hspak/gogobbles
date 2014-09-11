@@ -52,3 +52,28 @@ func dbQuery(label string) ([]MongoTodo, error) {
 	}
 	return results, nil
 }
+
+func dbCountLists() (map[string]int, int, error) {
+	session, err := mgo.Dial("localhost")
+	if err != nil {
+		return nil, 0, err
+	}
+	defer session.Close()
+
+	listNames, err := session.DB("gotest").CollectionNames()
+	if err != nil {
+		return nil, 0, err
+	}
+
+	itemCount := make(map[string]int)
+	var listCount int
+	for _, name := range listNames {
+		count, err := session.DB("gotest").C(name).Count()
+		if err != nil {
+			return nil, 0, err
+		}
+		itemCount[name] = count
+		listCount += count
+	}
+	return itemCount, listCount, nil
+}
