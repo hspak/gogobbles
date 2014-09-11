@@ -2,7 +2,7 @@ function removeTodo(itemId) {
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", "http://localhost:3000/remove/" + document.title + "/" + itemId, false);
+  xmlHttp.open("GET", "http://" + window.location.host + "/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
   console.log(xmlHttp.responseText);
   
@@ -13,14 +13,19 @@ function removeTodo(itemId) {
 }
 
 function addTodo() {
-  if (event.keyCode == 13) {
-    var input = document.getElementById("addBox").value;
+  var input = document.getElementById("addBox").value;
+  var helperLabel = document.getElementById("inputHelper");
+  if (event.keyCode == 13 && input.length > 0) {
+    if (! /^[a-zA-Z0-9~!@$\^&\*\(\)\{\}\[\]\+\-\=\_\,\<\>\"\'\:\;\`\|]+$/.test(input)) {
+      helperLabel.innerHTML = "No"
+      return;
+    }
+    helperLabel.innerHTML = ""
     document.getElementById("addBox").value = '';
 
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "http://localhost:3000/add/" + document.title + "/" + input, false);
+    xmlHttp.open("GET", "http://" + window.location.host + "/add/" + document.title + "/" + input, false);
     xmlHttp.send(null);
-    console.log(xmlHttp.responseText);
     newId = xmlHttp.responseText
 
     var list = document.getElementById("theList");
