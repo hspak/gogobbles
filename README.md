@@ -1,5 +1,5 @@
 # gogobbles
-### Name's getting replaced, I promise
+### Zero authentication todo "service".
 
 ## URL
 
@@ -7,7 +7,6 @@ Coming soon.
 
 ## What is it?
 
-Zero authentication todo "service".
 Consists of 2 pages:
 
     /

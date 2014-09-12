@@ -1,9 +1,7 @@
 package main
 
-import "log/syslog"
-
 type TempIndex struct {
-	Text string
+	ListCount string
 }
 
 type TempList struct {
@@ -11,7 +9,16 @@ type TempList struct {
 	Todos []TodoItem
 }
 
-func getListValues(label string, mainLogger *syslog.Writer) ([]TodoItem, error) {
+func getIndexInfo() (int, error) {
+	_, count, err := dbCountLists()
+	if err != nil {
+		return 0, err
+	}
+
+	return count, nil
+}
+
+func getListValues(label string) ([]TodoItem, error) {
 	list, err := dbQuery(label)
 	if err != nil {
 		return nil, err

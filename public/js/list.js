@@ -1,6 +1,4 @@
 function removeTodo(itemId) {
-  var xmlHttp = null;
-
   xmlHttp = new XMLHttpRequest();
   xmlHttp.open("GET", "http://" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
@@ -18,6 +16,9 @@ function addTodo() {
   if (event.keyCode == 13 && input.length > 0) {
     if (! /^[a-zA-Z0-9~!@$\^&\*\(\)\{\}\[\]\+\-\=\_\,\<\>\"\'\:\;\`\|]+$/.test(input)) {
       helperLabel.innerHTML = "No"
+      return;
+    } else if (input.length > 80) {
+      helperLabel.innerHTML = "80 char limit";
       return;
     }
     helperLabel.innerHTML = ""
