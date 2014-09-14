@@ -2,7 +2,6 @@ function removeTodo(itemId) {
   xmlHttp = new XMLHttpRequest();
   xmlHttp.open("GET", "http://" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
-  console.log(xmlHttp.responseText);
   
   var todoItem = document.getElementById('todo' + itemId);
   var todoBut = document.getElementById('but' + itemId);
@@ -30,10 +29,12 @@ function addTodo() {
     newId = xmlHttp.responseText
 
     var list = document.getElementById("theList");
-    var newTodo = document.createElement('li');
-    var newBut = document.createElement('button');
+    var newTodo = document.createElement('p');
+    var newBut = document.createElement('img');
     newTodo.id = 'todo' + newId
     newBut.id = 'but' + newId
+    newBut.className = 'x'
+    newBut.src = '/icon/circlex.png'
     newBut.onclick = function() {
       removeTodo(newBut.id.substr(3));
     };

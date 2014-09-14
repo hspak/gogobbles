@@ -2,15 +2,16 @@
 <html>
   <head>
     <title>{{ .Label }}</title>
+    <link rel="stylesheet" type="text/css" href="/style/list.css">
   </head>
   <body>
     <p> {{ .Label }}
-    <ul id="theList">
+    <div id="theList">
     {{ range .Todos }}
-      <button id="but{{ .Id }}" type="button" onclick="removeTodo({{ .Id }})">Remove</button>
-      <li id="todo{{ .Id }}">{{ .Text }}</li>
+      <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})" alt="Delete">
+      <p id="todo{{ .Id }}">{{ .Text }}</p>
     {{ end }}
-    </ul>
+    </div>
 
     <input id="addBox" type="text" onkeydown="addTodo()"></input><label id="inputHelper"></label>
 

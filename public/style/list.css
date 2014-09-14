@@ -1,0 +1,11 @@
+.x {
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+
+  transition: opacity 0.2s ease-in;
+}
+
+.x:hover {
+  opacity: 1.0;
+}

@@ -12,7 +12,13 @@ import (
 
 // ~150k list limit
 
-// this is a monster
+func maxLen(s string) int {
+	if len(s) > 80 {
+		return 80
+	}
+	return len(s)
+}
+
 func main() {
 	m := martini.Classic()
 	m.Use(render.Renderer())
@@ -34,25 +40,32 @@ func main() {
 	})
 
 	m.Get("/list/:label", func(params martini.Params, r render.Render) {
-		tmplList, err := getListValues(params["label"])
+		label := params["label"][:maxLen(params["label"])]
+		tmplList, err := getListValues(label)
 		if err != nil {
 			mainLogger.Err("Error: db query went bad: " + err.Error())
 			r.HTML(500, "index", nil) // make a new tmpl for this
 		}
-		r.HTML(200, "list", TempList{Label: params["label"], Todos: tmplList})
+		r.HTML(200, "list", TempList{Label: label, Todos: tmplList})
 	})
 
 	// API
 	m.Get("/api/get/:label", func(params martini.Params) string {
-		return apiGet(params["label"][:80], params["todo"][:80], mainLogger)
+		label := params["label"][:maxLen(params["label"])]
+		todo := params["todo"][:maxLen(params["todo"])]
+		return apiGet(label, todo, mainLogger)
 	})
 
 	m.Get("/api/remove/:label/:id", func(params martini.Params) string {
-		return apiRemove(params["label"][:80], params["id"], mainLogger)
+		label := params["label"][:maxLen(params["label"])]
+		id := params["id"][:maxLen(params["id"])]
+		return apiRemove(label, id, mainLogger)
 	})
 
 	m.Get("/api/add/:label/:todo", func(params martini.Params) string {
-		return apiAdd(params["label"][:80], params["todo"][:80], mainLogger)
+		label := params["label"][:maxLen(params["label"])]
+		todo := params["todo"][:maxLen(params["todo"])]
+		return apiAdd(label, todo, mainLogger)
 	})
 
 	m.Get("/api/count", func() string {
