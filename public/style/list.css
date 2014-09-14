@@ -1,11 +1,32 @@
+@font-face {
+  font-family:'Helvetica';
+  src:url('/font/HelveticaNeueLTCom-Bd.ttf');
+}
+
+body {
+  font-family: "Helvetica", sans-serif;
+}
+
 .x {
   width: 32px;
   height: 32px;
   opacity: 0.5;
+  display: inline-block;
 
   transition: opacity 0.2s ease-in;
 }
 
 .x:hover {
   opacity: 1.0;
+}
+
+.t {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.entry {
+
 }

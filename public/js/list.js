@@ -9,7 +9,7 @@ function removeTodo(itemId) {
   todoBut.parentNode.removeChild(todoBut);
 }
 
-function addTodo() {
+function addTodo(event) {
   var input = document.getElementById("addBox").value;
   var helperLabel = document.getElementById("inputHelper");
   if (event.keyCode == 13 && input.length > 0) {
@@ -28,19 +28,22 @@ function addTodo() {
     xmlHttp.send(null);
     newId = xmlHttp.responseText
 
-    var list = document.getElementById("theList");
-    var newTodo = document.createElement('p');
+    var list = document.getElementById('theList');
+    var entry = document.createElement('div');
+    var newTodo = document.createElement('span');
     var newBut = document.createElement('img');
+
     newTodo.id = 'todo' + newId
+    newTodo.className = 't'
     newBut.id = 'but' + newId
     newBut.className = 'x'
     newBut.src = '/icon/circlex.png'
-    newBut.onclick = function() {
-      removeTodo(newBut.id.substr(3));
-    };
+    newBut.onclick = function() { removeTodo(newBut.id.substr(3)); };
+
     newTodo.appendChild(document.createTextNode(input));
     newBut.appendChild(document.createTextNode("Remove"));
-    list.appendChild(newBut); 
-    list.appendChild(newTodo); 
+    entry.appendChild(newBut); 
+    entry.appendChild(newTodo); 
+    list.appendChild(entry); 
   }
 }

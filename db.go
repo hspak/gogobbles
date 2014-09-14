@@ -10,6 +10,15 @@ type MongoTodo struct {
 	Text string        `bson:"text"`
 }
 
+func dbCheck(label string, todo MongoTodo) error {
+	session, err := mgo.Dial("localhost")
+	if err != nil {
+		return err
+	}
+	session.Close()
+	return nil
+}
+
 func dbInsert(label string, todo MongoTodo) error {
 	session, err := mgo.Dial("localhost")
 	if err != nil {

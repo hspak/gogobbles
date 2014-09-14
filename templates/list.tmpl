@@ -5,15 +5,17 @@
     <link rel="stylesheet" type="text/css" href="/style/list.css">
   </head>
   <body>
-    <p> {{ .Label }}
+    <h1>{{ .Label }}</h1>
     <div id="theList">
     {{ range .Todos }}
-      <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})" alt="Delete">
-      <p id="todo{{ .Id }}">{{ .Text }}</p>
+      <div class="entry">
+        <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})" alt="Delete">
+        <span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
+      </div>
     {{ end }}
     </div>
 
-    <input id="addBox" type="text" onkeydown="addTodo()"></input><label id="inputHelper"></label>
+    <input id="addBox" type="text" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
 
     <script type="text/javascript">
       var label = {{ .Label }}

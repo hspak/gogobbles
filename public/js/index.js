@@ -1,4 +1,4 @@
-function newTodo() {
+function newTodo(event) {
   input = document.getElementById("searchBox").value;
   if (event.keyCode == 13 && input.length > 0) {
     if (! /^[a-zA-Z0-9~!@$\^&\*\(\)\{\}\[\]\+\-\=\_\,\<\>\"\'\:\;\`\|]+$/.test(input)) {

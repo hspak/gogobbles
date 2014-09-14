@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"log/syslog"
 	"strconv"
@@ -23,6 +22,10 @@ func main() {
 	m := martini.Classic()
 	m.Use(render.Renderer())
 
+	if err := dbCheck(); err != nil {
+		log.Fatal("Error: could not connect to mongodb")
+	}
+
 	mainLogger, err := syslog.New(syslog.LOG_ERR, "")
 	if err != nil {
 		log.Fatal("Error: could not start syslog")
@@ -31,7 +34,6 @@ func main() {
 	// Site
 	m.Get("/", func(r render.Render) {
 		count, err := getIndexInfo()
-		fmt.Println(count)
 		if err != nil {
 			mainLogger.Err("Error: db query went bad: " + err.Error())
 			r.HTML(500, "index", nil) // make a new tmpl for this
