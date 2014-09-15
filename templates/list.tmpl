@@ -3,19 +3,32 @@
   <head>
     <title>{{ .Label }}</title>
     <link rel="stylesheet" type="text/css" href="/style/list.css">
+    <link rel="stylesheet" type="text/css" href="/style/min.css">
   </head>
   <body>
-    <h1>{{ .Label }}</h1>
-    <div id="theList">
-    {{ range .Todos }}
-      <div class="entry">
-        <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})" alt="Delete">
-        <span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
+
+    <div class="container">
+      <h1 id="listTitle" contenteditable="true" onkeydown="exitEdit(event)">{{ .Label }}</h1>
+      <div id="theList" class="row">
+      {{ range .Todos }}
+        <div class="entry col c12">
+          <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})" alt="Delete">
+          <span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
+        </div>
+      {{ end }}
       </div>
-    {{ end }}
+      <input id="addBox" type="text" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
     </div>
 
-    <input id="addBox" type="text" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
+    <div class="container">
+      <br style="clear: both" />
+      <div class="row bar">
+        <div class="col c3">gogobbles</div>
+        <div class="col c3">hi</div>
+        <div class="col c3">api</div>
+        <div class="col c3">source</div>
+      </div>
+    </div>
 
     <script type="text/javascript">
       var label = {{ .Label }}
