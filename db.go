@@ -10,7 +10,7 @@ type MongoTodo struct {
 	Text string        `bson:"text"`
 }
 
-func dbCheck(label string, todo MongoTodo) error {
+func dbCheck() error {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		return err
