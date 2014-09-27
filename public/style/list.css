@@ -1,3 +1,7 @@
+html {
+  background-color: #cbcbcb;
+}
+
 .x {
   width: 25px;
   height: 25px;
@@ -5,6 +9,7 @@
   display: inline-block;
   vertical-align: middle;
   padding-right: 3px;
+  padding-left: 6px;
 
   transition: opacity 0.2s ease-in;
 }
@@ -19,8 +24,10 @@
 }
 
 .entry {
-  background-color: #eee;
-  margin: 0 6px 6px 0;
+  white-space: nowrap;
+  background-color: #dfdfdf;
+  padding: 4px 0 4px 0;
+  margin: 1px 0 11px 0;
   font-size: large;
+  box-shadow: 1px 1px 1px #888888;
 }
-

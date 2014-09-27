@@ -35,6 +35,7 @@ func apiGet(label string, todo string, mainLogger *syslog.Writer) string {
 		Count int
 		Todos []TodoItem
 	}{label, count, todos}
+
 	out, err := json.Marshal(jsonOut)
 	if err != nil {
 		mainLogger.Err("Error: could not properly construct json")

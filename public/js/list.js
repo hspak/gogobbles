@@ -30,9 +30,13 @@ function addTodo(event) {
   var input = document.getElementById("addBox").value;
   var helperLabel = document.getElementById("inputHelper");
   if (event.keyCode == 13 && input.length > 0) {
-    if (input.length > 80) {
-      helperLabel.innerHTML = "80 char limit";
-      return;
+    // if (input.length > 80) {
+      // helperLabel.innerHTML = "80 char limit";
+      // return;
+    // }
+    if (input.length > 38) {
+      input = input.slice(0, 35);
+      input += "...";
     }
     helperLabel.innerHTML = ""
     document.getElementById("addBox").value = '';
