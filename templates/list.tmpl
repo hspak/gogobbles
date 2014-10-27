@@ -12,8 +12,7 @@
       <div id="theList" class="row">
       {{ range .Todos }}
         <div class="entry col c12">
-          <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})" alt="Delete">
-          <span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
+          <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})"><span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
         </div>
       {{ end }}
       </div>

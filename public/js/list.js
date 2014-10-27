@@ -1,14 +1,14 @@
 function exitEdit(e) {
+  // detect and convert &gt; stuff to >
   input = document.getElementById('listTitle').innerHTML;
   if (e.keyCode == 13) {
+    e.preventDefault();
+    document.activeElement.blur();
     if (input.length > 0 && /^[a-zA-Z0-9~!@$\^&\*\(\)\{\}\[\]\+\-\=\_\,\<\>\"\'\:\;\`\|]+$/.test(input)) {
-        e.preventDefault();
-        document.activeElement.blur();
         window.location = "http://" + window.location.host + "/list/" + input;
         console.log(input);
     } else {
       document.getElementById('listTitle').innerHTML = document.title;
-      document.activeElement.blur();
       console.log("error msg");
     }
   }
@@ -27,42 +27,61 @@ function removeTodo(itemId) {
 }
 
 function addTodo(event) {
-  var input = document.getElementById("addBox").value;
+  var inputOrig = document.getElementById("addBox").value;
   var helperLabel = document.getElementById("inputHelper");
-  if (event.keyCode == 13 && input.length > 0) {
-    // if (input.length > 80) {
-      // helperLabel.innerHTML = "80 char limit";
-      // return;
-    // }
-    if (input.length > 38) {
-      input = input.slice(0, 35);
-      input += "...";
-    }
+  if (event.keyCode == 13 && inputOrig.length > 0) {
     helperLabel.innerHTML = ""
     document.getElementById("addBox").value = '';
-
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "http://" + window.location.host + "/api/add/" + document.title + "/" + input, false);
-    xmlHttp.send(null);
-    newId = xmlHttp.responseText
-
-    var list = document.getElementById('theList');
-    var entry = document.createElement('div');
-    var newTodo = document.createElement('span');
-    var newBut = document.createElement('img');
-
-    entry.className = 'entry col c12'
-    newTodo.id = 'todo' + newId
-    newTodo.className = 't'
-    newBut.id = 'but' + newId
-    newBut.className = 'x'
-    newBut.src = '/icon/circlex.png'
-    newBut.onclick = function() { removeTodo(newBut.id.substr(3)); };
-
-    newTodo.appendChild(document.createTextNode(input));
-    newBut.appendChild(document.createTextNode("Remove"));
-    entry.appendChild(newBut); 
-    entry.appendChild(newTodo); 
-    list.appendChild(entry); 
+    addElem(inputOrig);
   }
 }
+
+function addElem(text, refId) {
+  thisId = refId;
+
+  if (arguments.length == 1) {
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "http://" + window.location.host + "/api/add/" + document.title + "/" + text, false);
+    xmlHttp.send(null);
+    thisId = xmlHttp.responseText;
+  }
+
+  if (text.length > 38) {
+    text = text.slice(0, 35);
+    text += "...";
+  }
+
+  var list = document.getElementById('theList');
+  var entry = document.createElement('div');
+  var newTodo = document.createElement('span');
+  var newBut = document.createElement('img');
+
+  entry.className = 'entry col c12'
+  newTodo.id = 'todo' + thisId
+  newTodo.className = 't'
+  newBut.id = 'but' + thisId
+  newBut.className = 'x'
+  newBut.src = '/icon/circlex.png'
+  newBut.onclick = function() { removeTodo(newBut.id.substr(3)); };
+
+  newTodo.appendChild(document.createTextNode(text));
+  entry.appendChild(newBut);
+  entry.appendChild(newTodo);
+  list.appendChild(entry);
+}
+
+setInterval(function() {
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "http://" + window.location.host + "/api/get/" + document.title, false);
+    xmlHttp.send(null);
+    resp = JSON.parse(xmlHttp.responseText);
+
+    for (var i = 0; i < resp.Count; i++) {
+      var obj = resp.Todos[i].Id;
+      var text = resp.Todos[i].Text;
+      var todoItem = document.getElementById('todo' + obj);
+      if (todoItem == null) {
+        addElem(text, obj);
+      }
+    }
+}, 3000);
