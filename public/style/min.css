@@ -9,8 +9,12 @@ body {
   font-family: "Helvetica", sans-serif;
 }
 
-.bar {
-  min-width: 400px;
-  margin-bottom: 50px;
-  text-align: center;
+.head {
+  text-align: right;
+  margin: 10px 10px 0 0;
+}
+
+a {
+  text-decoration: none;
+  margin-right: 10px;
 }

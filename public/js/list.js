@@ -4,7 +4,7 @@ function exitEdit(e) {
   if (e.keyCode == 13) {
     e.preventDefault();
     document.activeElement.blur();
-    if (input.length > 0 && /^[a-zA-Z0-9~!@$\^&\*\(\)\{\}\[\]\+\-\=\_\,\<\>\"\'\:\;\`\|]+$/.test(input)) {
+    if (input.length > 0 && /^[a-zA-Z0-9]+$/.test(input)) {
         window.location = "http://" + window.location.host + "/list/" + input;
         console.log(input);
     } else {
@@ -15,15 +15,19 @@ function exitEdit(e) {
 }
 
 function removeTodo(itemId) {
+
   xmlHttp = new XMLHttpRequest();
   xmlHttp.open("GET", "http://" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
 
   var todoItem = document.getElementById('todo' + itemId);
   var todoBut = document.getElementById('but' + itemId);
-  todoBut.parentNode.parentNode.removeChild(todoBut.parentNode)
-  todoItem.parentNode.removeChild(todoItem);
-  todoBut.parentNode.removeChild(todoBut);
+  todoItem.parentNode.classList.add('horizTranslate');
+  setTimeout(function() {
+    todoBut.parentNode.parentNode.removeChild(todoBut.parentNode)
+    todoItem.parentNode.removeChild(todoItem);
+    todoBut.parentNode.removeChild(todoBut);
+  }, 400);
 }
 
 function addTodo(event) {
@@ -37,13 +41,26 @@ function addTodo(event) {
 }
 
 function addElem(text, refId) {
+  var box = document.getElementById("addBox");
   thisId = refId;
 
   if (arguments.length == 1) {
     xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", "http://" + window.location.host + "/api/add/" + document.title + "/" + text, false);
     xmlHttp.send(null);
+    if (xmlHttp.status != 200) {
+      // display some error
+      var msg = document.getElementById("inputHelper");
+      msg.innerHTML = 'Bad input';
+      box.className += ' error';
+      setTimeout(function() {
+        msg.innerHTML = '';
+        console.log('it ran');
+      }, 3000);
+      return;
+    }
     thisId = xmlHttp.responseText;
+    box.className = 'textbox';
   }
 
   if (text.length > 38) {
@@ -68,6 +85,9 @@ function addElem(text, refId) {
   entry.appendChild(newBut);
   entry.appendChild(newTodo);
   list.appendChild(entry);
+  setTimeout(function() {
+    entry.className += ' load';
+  }, 10);
 }
 
 setInterval(function() {

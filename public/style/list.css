@@ -1,5 +1,5 @@
 html {
-  background-color: #dfdfdf;
+  background-color: #f9f6f3;
 }
 
 .x {
@@ -8,7 +8,7 @@ html {
   opacity: 0.5;
   display: inline-block;
   vertical-align: middle;
-  padding-right: 3px;
+  padding-right: 9px;
   padding-left: 6px;
 
   transition: opacity 0.2s ease-in;
@@ -23,11 +23,79 @@ html {
   transform: translateY(10%);
 }
 
+#theList {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
 .entry {
+  opacity: 0;
   white-space: nowrap;
-  background-color: #eeeeee;
-  padding: 4px 0 4px 0;
-  margin: 1px 0 11px 0;
+  background-color: #fefefe;
+  padding: 10px 0 10px 0;
+  margin: 1px 0 4px 0;
   font-size: large;
   box-shadow: 1px 1px 1px #888888;
+
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  -ms-transition: opacity 0.5s ease-in;
+  -o-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+}
+
+.entry.load {
+  opacity: 1;
+}
+
+.entry.horizTranslate {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  width: 0;
+  margin-left: 100% !important;
+}
+
+#inputHelper {
+  padding-left: 15px;
+}
+
+.textbox.error {
+  outline: none;
+  border: 1px solid #FC3F35;
+  box-shadow: 0px 0px 8px #FC3F35;
+  -moz-box-shadow: 0px 0px 8px #FC3F35;
+  -webkit-box-shadow: 0px 0px 8px #FC3F35;
+}
+.textbox.error:focus {
+  outline: none;
+  border: 1px solid #FC3F35;
+  box-shadow: 0px 0px 8px #FC3F35;
+  -moz-box-shadow: 0px 0px 8px #FC3F35;
+  -webkit-box-shadow: 0px 0px 8px #FC3F35;
+}
+
+.textbox {
+    border: 1px solid #c4c4c4;
+    height: 30px;
+    min-width: 300px;
+    font-size: 20px;
+    padding: 4px 4px 4px 4px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0px 0px 8px #d9d9d9;
+    -moz-box-shadow: 0px 0px 8px #d9d9d9;
+    -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+}
+
+.textbox:focus {
+    outline: none;
+    border: 1px solid #7bc1f7;
+    box-shadow: 0px 0px 8px #7bc1f7;
+    -moz-box-shadow: 0px 0px 8px #7bc1f7;
+    -webkit-box-shadow: 0px 0px 8px #7bc1f7;
 }

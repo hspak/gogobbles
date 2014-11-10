@@ -2,32 +2,26 @@
 <html>
   <head>
     <title>{{ .Label }}</title>
-    <link rel="stylesheet" type="text/css" href="/style/list.css">
     <link rel="stylesheet" type="text/css" href="/style/min.css">
+    <link rel="stylesheet" type="text/css" href="/style/list.css">
   </head>
   <body>
+    <div class="head">
+      <a href="/">api</a>
+      <a href="/">terms</a>
+    </div>
 
     <div class="container">
       <h1 id="listTitle" contenteditable="true" onkeydown="exitEdit(event)">{{ .Label }}</h1>
       <div id="theList" class="row">
       {{ range .Todos }}
-        <div class="entry col c12">
+        <div class="entry load col c12">
           <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})"><span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
         </div>
       {{ end }}
       </div>
-      <input id="addBox" type="text" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
+      <input id="addBox" class="textbox" type="text" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
     </div>
-
-    <!-- <div class="container">
-      <br style="clear: both" />
-      <div class="row bar">
-        <div class="col c3">gogobbles</div>
-        <div class="col c3">hi</div>
-        <div class="col c3">api</div>
-        <div class="col c3">source</div>
-      </div>
-    </div> --->
 
     <script type="text/javascript">
       var label = {{ .Label }}
