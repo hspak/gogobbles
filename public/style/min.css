@@ -11,10 +11,24 @@ body {
 
 .head {
   text-align: right;
-  margin: 10px 10px 0 0;
+  margin: 28px 10px 0 0;
+}
+
+.colorbar {
+  height: 4px;
+  background-color: #826159;
+}
+
+a:hover {
+  color: #666;
 }
 
 a {
   text-decoration: none;
   margin-right: 10px;
+  color: #826159;
+  -moz-transition: color 0.2s ease-in;
+  -webkit-transition: color 0.2s ease-in;
+  -o-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
 }

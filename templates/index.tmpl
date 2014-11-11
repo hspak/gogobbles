@@ -6,12 +6,16 @@
     <link rel="stylesheet" type="text/css" href="/style/index.css">
   </head>
   <body>
+    <div class="colorbar"></div>
     <div class="head">
       <a href="/">api</a>
       <a href="/">terms</a>
     </div>
     <div class="container">
-      <h1 id="gobbles">Gogobbles</h1>
+      <div class="title">
+        <img id="turkey" src="/turkey.png"></img>
+        <h1 id="gobbles">Gogobbles</h1>
+      </div>
       <span>{{ .ListCount }} lists created and counting!</span>
       <br>
       <input autofocus id="searchBox" class="textbox" type="text" placeholder="Create or search for a list" onkeydown="newTodo(event)"></input></input><label id="inputHelper"></label>
