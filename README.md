@@ -17,6 +17,18 @@ Landing page,
 
 Your list.
 
+## Is it realtime?
+
+It's kind of. It'll update every 3 seconds and add new items that were added for
+anyone on the same page. Removed items don't get updated unless they refresh the
+page.
+
+## Stack
+
+Server - Go - Martini
+DB - Mongodb - mgo
+Frontend - Bare JS
+
 ## API
 
 Docs [here](http://gogobbles.com/api)
