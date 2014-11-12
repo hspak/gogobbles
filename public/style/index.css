@@ -20,13 +20,15 @@ html {
   padding-top: 75px;
 }
 
-span {
-  margin-right: 75px;
+.tip {
+  padding-top: 0;
+  margin-top: 8px;
+  margin-left: 81px;
   color: #715f5b;
 }
 
 .title {
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 }
 
 #gobbles {

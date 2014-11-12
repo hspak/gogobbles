@@ -60,7 +60,7 @@ function addElem(text, refId) {
       return;
     }
     thisId = xmlHttp.responseText;
-    box.className = 'inputbox';
+    box.className = 'inputbox col c12';
   }
 
   if (text.length > 38) {

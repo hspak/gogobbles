@@ -12,17 +12,17 @@
   <body>
     <div class="colorbar"></div>
     <div class="head">
-      <a href="https://github.com/hspak/gogobbles">source</a>
+      <a href="/faq">faq</a>
       <a href="/api">api</a>
+      <a href="https://github.com/hspak/gogobbles">source</a>
     </div>
     <div class="container">
       <div class="title">
         <img id="turkey" src="/image/turkey.png"></img>
         <p id="gobbles">GoGobbles</p>
       </div>
-      <span>{{ .ListCount }} lists created and counting!</span>
-      <br>
       <input autofocus id="searchBox" class="textbox" type="text" placeholder="Create or search for a list" onkeydown="newTodo(event)"></input></input><label id="inputHelper"></label>
+      <p class="tip">{{ .ListCount }} lists created and counting!</p>
     </div>
 
     <script src="/js/index.js" type="text/javascript"></script>

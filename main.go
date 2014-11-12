@@ -44,6 +44,9 @@ func main() {
 	m.Get("/api", func(r render.Render) {
 		r.HTML(200, "api", nil)
 	})
+	m.Get("/faq", func(r render.Render) {
+		r.HTML(200, "faq", nil)
+	})
 
 	m.Get("/list/:label", func(params martini.Params, r render.Render) {
 		label := params["label"][:maxLen(params["label"])]

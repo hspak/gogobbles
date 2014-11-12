@@ -31,7 +31,7 @@ h1 {
   transform: translateY(10%);
 }
 
-#theList {
+.row {
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -79,6 +79,7 @@ h1 {
   box-shadow: 1px 1px 1px #826159;
   border: 0;
   opacity: .3;
+  margin-right: 100px;
 
   border-radius: 0px;
   -moz-border-radius: 0px;
