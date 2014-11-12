@@ -8,8 +8,8 @@
   <body>
     <div class="colorbar"></div>
     <div class="head">
+      <a href="https://github.com/hspak/gogobbles">source</a>
       <a href="/">api</a>
-      <a href="/">terms</a>
     </div>
 
     <div class="container">
@@ -17,11 +17,11 @@
       <div id="theList" class="row">
       {{ range .Todos }}
         <div class="entry load col c12">
-          <img id="but{{ .Id }}" class="x" src="/icon/circlex.png" onclick="removeTodo({{ .Id }})"><span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
+          <img id="but{{ .Id }}" class="x" src="/image/circlex.png" onclick="removeTodo({{ .Id }})"><span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
         </div>
       {{ end }}
       </div>
-      <input id="addBox" class="textbox" type="text" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
+      <input id="addBox" class="inputbox" type="text" placeholder="Add an entry here" onkeydown="addTodo(event)"></input><label id="inputHelper"></label>
     </div>
 
     <script type="text/javascript">

@@ -2,6 +2,10 @@ html {
   background-color: #f9f6f3;
 }
 
+h1 {
+  color: #826159;
+}
+
 .x {
   width: 25px;
   height: 25px;
@@ -28,21 +32,21 @@ html {
   overflow-y: hidden;
 }
 
-
 .entry {
-  opacity: 0;
+  max-width: 690px;
+  opacity: 0.3;
   white-space: nowrap;
   background-color: #fefefe;
-  padding: 10px 0 10px 0;
+  padding: 13px 0 13px 0;
   margin: 1px 0 4px 0;
   font-size: large;
-  box-shadow: 1px 1px 1px #888888;
+  box-shadow: 1px 1px 2px #826159;
 
-  -webkit-transition: opacity 0.5s ease-in;
-  -moz-transition: opacity 0.5s ease-in;
-  -ms-transition: opacity 0.5s ease-in;
-  -o-transition: opacity 0.5s ease-in;
-  transition: opacity 0.5s ease-in;
+  -webkit-transition: opacity 0.35s ease-in;
+  -moz-transition: opacity 0.35s ease-in;
+  -ms-transition: opacity 0.35s ease-in;
+  -o-transition: opacity 0.35s ease-in;
+  transition: opacity 0.35s ease-in;
 }
 
 .entry.load {
@@ -63,39 +67,13 @@ html {
   padding-left: 15px;
 }
 
-.textbox.error {
-  outline: none;
-  border: 1px solid #FC3F35;
-  box-shadow: 0px 0px 8px #FC3F35;
-  -moz-box-shadow: 0px 0px 8px #FC3F35;
-  -webkit-box-shadow: 0px 0px 8px #FC3F35;
-}
-.textbox.error:focus {
-  outline: none;
-  border: 1px solid #FC3F35;
-  box-shadow: 0px 0px 8px #FC3F35;
-  -moz-box-shadow: 0px 0px 8px #FC3F35;
-  -webkit-box-shadow: 0px 0px 8px #FC3F35;
-}
-
-.textbox {
-    border: 1px solid #c4c4c4;
-    height: 30px;
-    min-width: 300px;
-    font-size: 20px;
-    padding: 4px 4px 4px 4px;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    box-shadow: 0px 0px 8px #d9d9d9;
-    -moz-box-shadow: 0px 0px 8px #d9d9d9;
-    -webkit-box-shadow: 0px 0px 8px #d9d9d9;
-}
-
-.textbox:focus {
-    outline: none;
-    border: 1px solid #7bc1f7;
-    box-shadow: 0px 0px 8px #7bc1f7;
-    -moz-box-shadow: 0px 0px 8px #7bc1f7;
-    -webkit-box-shadow: 0px 0px 8px #7bc1f7;
+.inputbox {
+  font-size: large;
+  min-width: 675px;
+  min-height: 31px;
+  background-color: #fefefe;
+  border-radius: 0px;
+  box-shadow: 1px 1px 1px #826159;
+  border: 0;
+  opacity: .3;
 }

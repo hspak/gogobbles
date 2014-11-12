@@ -41,6 +41,10 @@ func main() {
 		r.HTML(200, "index", TempIndex{ListCount: strconv.Itoa(count)})
 	})
 
+	m.Get("/api", func(r render.Render) {
+		r.HTML(200, "api", nil)
+	})
+
 	m.Get("/list/:label", func(params martini.Params, r render.Render) {
 		label := params["label"][:maxLen(params["label"])]
 		tmplList, err := getListValues(label)

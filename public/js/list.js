@@ -60,7 +60,7 @@ function addElem(text, refId) {
       return;
     }
     thisId = xmlHttp.responseText;
-    box.className = 'textbox';
+    box.className = 'inputbox';
   }
 
   if (text.length > 38) {
@@ -78,7 +78,7 @@ function addElem(text, refId) {
   newTodo.className = 't'
   newBut.id = 'but' + thisId
   newBut.className = 'x'
-  newBut.src = '/icon/circlex.png'
+  newBut.src = '/image/circlex.png'
   newBut.onclick = function() { removeTodo(newBut.id.substr(3)); };
 
   newTodo.appendChild(document.createTextNode(text));
