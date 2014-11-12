@@ -26,7 +26,9 @@ page.
 ## Stack
 
 Server - Go - Martini
+
 DB - Mongodb - mgo
+
 Frontend - Bare JS
 
 ## API
