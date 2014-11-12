@@ -27,7 +27,7 @@ page.
 
 Server - Go - Martini
 
-DB - Mongodb - mgo
+DB - MongoDB - mgo
 
 Frontend - Bare JS
 
