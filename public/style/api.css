@@ -1,0 +1,71 @@
+.container {
+  border: 1px solid #eee;
+  margin-top: 50px;
+  padding: 10px 20px 10px 20px;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.title {
+  margin-top: 10px;
+  margin-left: 14px;
+  float: left;
+}
+
+#gobbles {
+  font-size: 30px;
+  font-family: "Helvetica-Roman", san-serif;
+  display: inline-block;
+  transform: translateY(30%);
+  color: #826159;
+  margin: 0 0 40px 0;
+}
+
+#turkey {
+  max-height: 40px;
+  max-width: 40px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.smalltitle {
+  margin: 0;
+}
+
+.api {
+  background-color: #dfdfdf;
+  color: #222;
+  padding: 2px 2px 0 2px;
+  font-size: 14px;
+
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.apicall {
+  margin-bottom: 40px;
+}
+
+.apiname {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.apidesc {
+  margin-left: 20px;
+  font-family: "Helvetica-Roman", sans-serif;
+}
+
+.example {
+  background-color: #dfdfdf;
+  max-width: 500px;
+  margin-left: 35px;
+  padding: 10px;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}

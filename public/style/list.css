@@ -6,6 +6,10 @@ h1 {
   color: #826159;
 }
 
+.smalltitle {
+  margin: 0;
+}
+
 .x {
   width: 25px;
   height: 25px;
@@ -72,8 +76,41 @@ h1 {
   min-width: 675px;
   min-height: 31px;
   background-color: #fefefe;
-  border-radius: 0px;
   box-shadow: 1px 1px 1px #826159;
   border: 0;
   opacity: .3;
+
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+.title {
+  margin-top: 10px;
+  margin-left: 14px;
+  float: left;
+}
+
+#gobbles {
+  font-size: 30px;
+  font-family: "Helvetica-Roman", san-serif;
+  display: inline-block;
+  transform: translateY(30%);
+  color: #826159;
+  margin: 0 0 40px 0;
+}
+
+#turkey {
+  max-height: 40px;
+  max-width: 40px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#listTitle {
+  margin-bottom: 0;
+}
+
+.container {
+  margin-top: 50px;
 }

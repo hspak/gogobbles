@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoGobbles</title>
+    <link rel="stylesheet" type="text/css" href="/style/min.css">
+    <link rel="stylesheet" type="text/css" href="/style/api.css">
+  </head>
+  <body>
+    <div class="colorbar"></div>
+    <a class="smalltitle" href="/"><div class="title">
+      <img id="turkey" src="/image/turkey.png"></img>
+      <p id="gobbles">GoGobbles</p>
+    </div></a>
+    <div class="head">
+      <a href="https://github.com/hspak/gogobbles">source</a>
+      <a href="/api">api</a>
+    </div>
+    <div class="container">
+      <div class="apicall">
+        <p class="apiname">API Call: <code class="api">/api/count</code></p>
+        <p class="apidesc">Returns the total number of lists in the database. Also returns an array of lists in existance with the name and count of items. The total count and the length of the list may not match.</p>
+        <pre class="example">
+  Example response:
+
+  {
+    ListCount: 3,
+    List: [
+      {
+        Label: "a",
+        Count: 5
+      }
+      {
+        Label: "b",
+        Count: 500
+      }
+      {
+        Label: "c",
+        Count: 50
+      }
+    ]
+  }
+        </pre>
+      </div>
+      <div class="apicall">
+        <p class="apiname">API Call: <code class="api">/api/get/:label</code></p>
+        <p class="apidesc">Returns the label name, count and a list of items' id and text.</p>
+        <pre class="example">
+  Example response:
+
+  {
+    Label: "a",
+    Count: 3,
+    Todos: [
+      {
+        Id: "5462ab43b4d9a64312000006",
+        Text: "item1"
+      }
+      {
+        Id: "5462ab43b4d9a64312000007",
+        Text: "item2"
+      }
+      {
+        Id: "5462ab43b4d9a64312000008",
+        Text: "item3"
+      }
+    ]
+  }
+        </pre>
+      </div>
+      <div class="apicall">
+        <p class="apiname">API Call: <code class="api">/api/add/:label/:todo</code></p>
+        <p class="apidesc">Adds a todo item to the label provided. Will respond with the id of the new item.</p>
+        <pre class="example">
+  Example response:
+  
+  5462ab43b4d9a64312000006
+        </pre>
+      </div>
+      <div class="apicall">
+        <p class="apiname">API Call: <code class="api">/api/remove/:label/:id</code></p>
+        <p class="apidesc">Removes a todo item from the label with the provdied id. No response.</p>
+      </div>
+      <p>Note: json response isn't prettified, yet.</p>
+    </div>
+  </body>
+</html>
