@@ -1,18 +1,7 @@
-html, body {
-  margin  : 0px;
-  padding : 0px;
-  background-color: #f9f6f3;
-  /* color: white; */
-}
-
 html {
-  /* height: 100%; */
-  /* margin:0px; */
-  /* background: url("/back.jpg"); */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
-  /* background-attachment: fixed; */
-  /* text-shadow: 1px 1px 3px #000000; */
+  margin: 0;
+  padding: 0;
+  background-color: #f9f6f3;
 }
 
 .container {
@@ -23,7 +12,7 @@ html {
 .tip {
   padding-top: 0;
   margin-top: 8px;
-  margin-left: 81px;
+  margin-left: 85px;
   color: #715f5b;
 }
 
