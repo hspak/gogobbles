@@ -86,7 +86,7 @@ function addElem(text, refId) {
   entry.appendChild(newTodo);
   list.appendChild(entry);
   setTimeout(function() {
-    entry.className += ' load';
+    entry.className += ' load col c12';
   }, 10);
 }
 
