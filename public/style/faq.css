@@ -1,0 +1,49 @@
+html {
+  background-color: #f9f6f3;
+}
+
+.container {
+  margin-top: 50px;
+  padding: 10px 20px 10px 20px;
+}
+
+.title {
+  margin-top: 10px;
+  margin-left: 14px;
+  float: left;
+}
+
+#gobbles {
+  font-size: 30px;
+  font-family: "Helvetica-Roman", san-serif;
+  display: inline-block;
+  transform: translateY(30%);
+  color: #826159;
+  margin: 0 0 40px 0;
+}
+
+#turkey {
+  max-height: 40px;
+  max-width: 40px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.smalltitle {
+  margin: 0;
+}
+
+.qa {
+  margin-bottom: 30px;
+}
+
+.question {
+  font-size: 20px;
+  color: #826159;
+}
+
+.answer {
+  margin: 10px 0 0 10px;
+  color: #444;
+  font-family: "Helvetica-Roman", sans-serif;
+}
