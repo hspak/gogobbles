@@ -73,7 +73,7 @@ h1 {
 
 .inputbox {
   font-size: large;
-  min-width: 675px;
+  width: 675px;
   min-height: 31px;
   background-color: #fefefe;
   box-shadow: 1px 1px 1px #826159;

@@ -51,7 +51,7 @@ function addElem(text, refId) {
     if (xmlHttp.status != 200) {
       // display some error
       var msg = document.getElementById("inputHelper");
-      msg.innerHTML = 'Bad input';
+      // msg.innerHTML = 'Bad input';
       box.className += ' error';
       setTimeout(function() {
         msg.innerHTML = '';
