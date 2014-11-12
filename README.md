@@ -31,6 +31,11 @@ DB - MongoDB - mgo
 
 Frontend - Bare JS
 
+Future:
+
+I plan on removing Martini as a dependency and picking up ReactJS to replace my
+hacked javascript.
+
 ## API
 
 Docs [here](http://gogobbles.com/api)
