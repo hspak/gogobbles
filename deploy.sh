@@ -5,13 +5,13 @@ git pull
 
 cd public/style
 for file in *.css; do
-  minify --ouput temp $file
+  minify --output temp $file
   mv temp $file
 done
 
 cd ../js
 for file in *.js; do
-  minify --ouput temp $file
+  minify --output temp $file
   mv temp $file
 done
 
