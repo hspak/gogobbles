@@ -74,14 +74,14 @@ func apiAdd(label string, todo string, mainLogger *syslog.Writer) string {
 func apiCount(mainLogger *syslog.Writer) string {
 	itemCount, listCount, err := dbCountLists()
 	var countOut struct {
-		ListCount int
+		ItemCount int
 		List      []struct {
 			Label string
 			Count int
 		}
 	}
 
-	countOut.ListCount = listCount
+	countOut.ItemCount = listCount
 	countOut.List = make([]struct {
 		Label string
 		Count int

@@ -77,6 +77,10 @@ func dbCountLists() (map[string]int, int, error) {
 	itemCount := make(map[string]int)
 	var listCount int
 	for _, name := range listNames {
+		if name == "system.indexes" {
+			continue
+		}
+
 		count, err := session.DB("gotest").C(name).Count()
 		if err != nil {
 			return nil, 0, err
