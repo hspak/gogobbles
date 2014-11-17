@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"log/syslog"
-	"net/http"
 	"strconv"
 
 	"github.com/go-martini/martini"
@@ -23,9 +22,9 @@ func main() {
 	m := martini.Classic()
 
 	m.Use(render.Renderer())
-	m.Use(func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "https://gogobbles.com"+r.RequestURI, http.StatusMovedPermanently)
-	})
+	// m.Use(func(w http.ResponseWriter, r *http.Request) {
+	// http.Redirect(w, r, "https://gogobbles.com"+r.RequestURI, http.StatusMovedPermanently)
+	// })
 
 	if err := dbCheck(); err != nil {
 		log.Fatal("Error: could not connect to mongodb")
