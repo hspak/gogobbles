@@ -11,7 +11,7 @@
   <body>
     <div class="colorbar"></div>
     <a class="smalltitle" href="/"><div class="title">
-      <img id="turkey" src="/image/turkey.png"></img>
+      <img id="turkey" src="/image/turkeytitle.png"></img>
       <p id="gobbles">GoGobbles</p>
     </div></a>
     <div class="head">
@@ -25,7 +25,7 @@
       <div id="theList" class="row">
       {{ range .Todos }}
         <div class="entry load col c12">
-          <img id="but{{ .Id }}" class="x" src="/image/circlex.png" onclick="removeTodo({{ .Id }})"><span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
+          <img id="but{{ .Id }}" class="x" src="/image/smallcirclex.png" onclick="removeTodo({{ .Id }})"><span id="todo{{ .Id }}" class="t">{{ .Text }}</span>
         </div>
       {{ end }}
       </div>
