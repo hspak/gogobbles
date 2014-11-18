@@ -3,7 +3,7 @@
 
 ## URL
 
-[Gogobbles](http://gogobbles.com/api)!
+[Gogobbles](https://gogobbles.com)!
 
 ## What is it?
 
@@ -38,7 +38,7 @@ hacked javascript.
 
 ## API
 
-Docs [here](http://gogobbles.com/api)
+Docs [here](https://gogobbles.com/api)
 
 ## LICENSE
 
