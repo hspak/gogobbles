@@ -92,7 +92,7 @@ function addElem(text, refId) {
 
 setInterval(function() {
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "https://" + window.location.host + "/api/get/" + document.title, true);
+    xmlHttp.open("GET", "https://" + window.location.host + "/api/get/" + document.title, false);
     xmlHttp.send(null);
     resp = JSON.parse(xmlHttp.responseText);
 
