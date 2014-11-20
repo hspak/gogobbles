@@ -5,7 +5,7 @@ function exitEdit(e) {
     e.preventDefault();
     document.activeElement.blur();
     if (input.length > 0 && /^[a-zA-Z0-9]+$/.test(input)) {
-        window.location = "//" + window.location.host + "/list/" + input;
+        window.location = "https://" + window.location.host + "/list/" + input;
         console.log(input);
     } else {
       document.getElementById('listTitle').innerHTML = document.title;
@@ -17,7 +17,7 @@ function exitEdit(e) {
 function removeTodo(itemId) {
 
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", "//" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
+  xmlHttp.open("GET", "https://" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
 
   var todoItem = document.getElementById('todo' + itemId);
@@ -46,7 +46,7 @@ function addElem(text, refId) {
 
   if (arguments.length == 1) {
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "//" + window.location.host + "/api/add/" + document.title + "/" + text, false);
+    xmlHttp.open("GET", "https://" + window.location.host + "/api/add/" + document.title + "/" + text, false);
     xmlHttp.send(null);
     if (xmlHttp.status != 200) {
       // display some error
@@ -92,7 +92,7 @@ function addElem(text, refId) {
 
 setInterval(function() {
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "//" + window.location.host + "/api/get/" + document.title, false);
+    xmlHttp.open("GET", "https://" + window.location.host + "/api/get/" + document.title, false);
     xmlHttp.send(null);
     resp = JSON.parse(xmlHttp.responseText);
 
