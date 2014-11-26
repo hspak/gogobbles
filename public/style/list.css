@@ -32,6 +32,7 @@ h1 {
 }
 
 .row {
+  width: 675px;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -67,8 +68,25 @@ h1 {
   margin-left: 100% !important;
 }
 
-#inputHelper {
-  padding-left: 15px;
+.redify {
+  -webkit-transition: background-color 0.6s;
+  -moz-transition: background-color 0.6s;
+  -ms-transition: background-color 0.6s;
+  -o-transition: background-color 0.6s;
+  transition: background-color 0.6s;
+  background-color: #993E37;
+}
+.unredify {
+  background-color: #f9f6f3;
+  -webkit-transition: background-color 0.35s;
+  -moz-transition: background-color 0.35s;
+  -ms-transition: background-color 0.35s;
+  -o-transition: background-color 0.35s;
+  transition: background-color 0.35s;
+}
+
+.redify-helper {
+  margin-bottom: 0px !important;
 }
 
 .inputbox {
@@ -80,6 +98,7 @@ h1 {
   border: 0;
   opacity: .3;
   margin-right: 100px;
+  margin-bottom: 5px;
 
   border-radius: 0px;
   -moz-border-radius: 0px;

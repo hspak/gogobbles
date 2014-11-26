@@ -5,7 +5,7 @@ function exitEdit(e) {
     e.preventDefault();
     document.activeElement.blur();
     if (input.length > 0 && /^[a-zA-Z0-9]+$/.test(input)) {
-        window.location = "https://" + window.location.host + "/list/" + input;
+        window.location = "//" + window.location.host + "/list/" + input;
         console.log(input);
     } else {
       document.getElementById('listTitle').innerHTML = document.title;
@@ -17,7 +17,7 @@ function exitEdit(e) {
 function removeTodo(itemId) {
 
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", "https://" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
+  xmlHttp.open("GET", "//" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
 
   var todoItem = document.getElementById('todo' + itemId);
@@ -32,13 +32,13 @@ function removeTodo(itemId) {
 
 function addTodo(event) {
   var inputOrig = document.getElementById("addBox").value;
-  var helperLabel = document.getElementById("inputHelper");
   if (event.keyCode == 13 && inputOrig.length > 0) {
-    helperLabel.innerHTML = ""
     document.getElementById("addBox").value = '';
     addElem(inputOrig);
   }
 }
+
+redifyHold = false;
 
 function addElem(text, refId) {
   var box = document.getElementById("addBox");
@@ -46,17 +46,24 @@ function addElem(text, refId) {
 
   if (arguments.length == 1) {
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "https://" + window.location.host + "/api/add/" + document.title + "/" + text, false);
+    xmlHttp.open("GET", "//" + window.location.host + "/api/add/" + document.title + "/" + text, false);
     xmlHttp.send(null);
     if (xmlHttp.status != 200) {
-      // display some error
-      var msg = document.getElementById("inputHelper");
-      // msg.innerHTML = 'Bad input';
-      box.className += ' error';
+      if (redifyHold == true) {
+        return;
+      }
+      redifyHold = true;
+      box.classList.add('redify-helper');
+      box.parentNode.classList.add('redify');
       setTimeout(function() {
-        msg.innerHTML = '';
-        console.log('it ran');
-      }, 3000);
+        box.parentNode.classList.remove('redify');
+        box.parentNode.classList.add('unredify');
+        setTimeout(function() {
+          box.classList.remove('redify-helper');
+          box.parentNode.classList.remove('unredify');
+          redifyHold = false;
+        }, 350);
+      }, 450);
       return;
     }
     thisId = xmlHttp.responseText;
@@ -92,7 +99,7 @@ function addElem(text, refId) {
 
 setInterval(function() {
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "https://" + window.location.host + "/api/get/" + document.title, false);
+    xmlHttp.open("GET", "//" + window.location.host + "/api/get/" + document.title, false);
     xmlHttp.send(null);
     resp = JSON.parse(xmlHttp.responseText);
 
