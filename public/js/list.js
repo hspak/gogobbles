@@ -13,7 +13,6 @@ function exitEdit(e) {
 }
 
 function removeTodo(itemId) {
-
   xmlHttp = new XMLHttpRequest();
   xmlHttp.open("GET", "//" + window.location.host + "/api/remove/" + document.title + "/" + itemId, false);
   xmlHttp.send(null);
@@ -22,9 +21,12 @@ function removeTodo(itemId) {
   var todoBut = document.getElementById('but' + itemId);
   todoItem.parentNode.classList.add('horizTranslate');
   setTimeout(function() {
-    todoBut.parentNode.parentNode.removeChild(todoBut.parentNode)
-    todoItem.parentNode.removeChild(todoItem);
-    todoBut.parentNode.removeChild(todoBut);
+  todoItem.parentNode.classList.add('shrink');
+    setTimeout(function() {
+      todoBut.parentNode.parentNode.removeChild(todoBut.parentNode)
+      todoItem.parentNode.removeChild(todoItem);
+      todoBut.parentNode.removeChild(todoBut);
+    }, 400);
   }, 400);
 }
 

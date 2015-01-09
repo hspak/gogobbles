@@ -67,6 +67,13 @@ h1 {
   margin-left: 100% !important;
 }
 
+.entry.shrink {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  margin-bottom: -60px;
+  transition: all 0.26s ease;
+}
+
 .redify-helper {
   margin-bottom: 0px !important;
 }
