@@ -6,10 +6,8 @@ function exitEdit(e) {
     document.activeElement.blur();
     if (input.length > 0 && /^[a-zA-Z0-9]+$/.test(input)) {
         window.location = "//" + window.location.host + "/list/" + input;
-        console.log(input);
     } else {
       document.getElementById('listTitle').innerHTML = document.title;
-      console.log("error msg");
     }
   }
 }
