@@ -32,7 +32,6 @@ h1 {
 }
 
 .row {
-  max-width: 675px;
   overflow-x: hidden;
   overflow-y: hidden;
 }
