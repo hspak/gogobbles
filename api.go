@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log/syslog"
 
+	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -12,14 +13,14 @@ type TodoItem struct {
 	Text string
 }
 
-func apiGet(label string, todo string, mainLogger *syslog.Writer) string {
+func apiGet(s *mgo.Session, label string, todo string, mlog *syslog.Writer) string {
 	if len(label) == 0 {
 		return ""
 	}
 
-	list, err := dbQuery(label)
+	list, err := dbQuery(s, label)
 	if err != nil {
-		mainLogger.Err("Error: db query went bad: " + err.Error())
+		mlog.Err("Error: db query went bad: " + err.Error())
 		return "Error"
 	}
 
@@ -38,41 +39,41 @@ func apiGet(label string, todo string, mainLogger *syslog.Writer) string {
 
 	out, err := json.Marshal(jsonOut)
 	if err != nil {
-		mainLogger.Err("Error: could not properly construct json")
+		mlog.Err("Error: could not properly construct json")
 		return "Error"
 	}
 	return string(out)
 }
 
-func apiRemove(label string, id string, mainLogger *syslog.Writer) string {
+func apiRemove(s *mgo.Session, label string, id string, mlog *syslog.Writer) string {
 	if len(label) == 0 {
 		return ""
 	}
 
-	err := dbRemove(label, MongoTodo{Id: bson.ObjectIdHex(id), Text: ""})
+	err := dbRemove(s, label, MongoTodo{Id: bson.ObjectIdHex(id), Text: ""})
 	if err != nil {
-		mainLogger.Err("Error: db remove went bad: " + err.Error())
+		mlog.Err("Error: db remove went bad: " + err.Error())
 		return "Error"
 	}
 	return "Removing: " + id + " from: " + label
 }
 
-func apiAdd(label string, todo string, mainLogger *syslog.Writer) string {
+func apiAdd(s *mgo.Session, label string, todo string, mlog *syslog.Writer) string {
 	if len(label) == 0 {
 		return ""
 	}
 
 	newTodo := MongoTodo{Id: bson.NewObjectId(), Text: todo}
-	err := dbInsert(label, newTodo)
+	err := dbInsert(s, label, newTodo)
 	if err != nil {
-		mainLogger.Err("Error: db insert went bad: " + err.Error())
+		mlog.Err("Error: db insert went bad: " + err.Error())
 		return "Error"
 	}
 	return newTodo.Id.Hex()
 }
 
-func apiCount(mainLogger *syslog.Writer) string {
-	itemCount, listCount, err := dbCountLists()
+func apiCount(s *mgo.Session, mlog *syslog.Writer) string {
+	itemCount, listCount, err := dbCountLists(s)
 	var countOut struct {
 		ItemCount int
 		List      []struct {
@@ -95,7 +96,7 @@ func apiCount(mainLogger *syslog.Writer) string {
 
 	out, err := json.Marshal(countOut)
 	if err != nil {
-		mainLogger.Err("Error: could not properly construct json")
+		mlog.Err("Error: could not properly construct json")
 		return "Error"
 	}
 	return string(out)

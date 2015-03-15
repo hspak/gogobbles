@@ -22,11 +22,9 @@ func main() {
 	m := martini.Classic()
 
 	m.Use(render.Renderer())
-	// m.Use(func(w http.ResponseWriter, r *http.Request) {
-	// http.Redirect(w, r, "https://gogobbles.com"+r.RequestURI, http.StatusMovedPermanently)
-	// })
 
-	if err := dbCheck(); err != nil {
+	session, err := dbOpen()
+	if err != nil {
 		log.Fatal("Error: could not connect to mongodb")
 	}
 
@@ -37,7 +35,7 @@ func main() {
 
 	// Site
 	m.Get("/", func(r render.Render) {
-		count, err := getIndexInfo()
+		count, err := getIndexInfo(session)
 		if err != nil {
 			mainLogger.Err("Error: db query went bad: " + err.Error())
 			r.HTML(500, "index", nil) // make a new tmpl for this
@@ -54,7 +52,7 @@ func main() {
 
 	m.Get("/list/:label", func(params martini.Params, r render.Render) {
 		label := params["label"][:maxLen(params["label"])]
-		tmplList, err := getListValues(label)
+		tmplList, err := getListValues(session, label)
 		if err != nil {
 			mainLogger.Err("Error: db query went bad: " + err.Error())
 			r.HTML(500, "index", nil) // make a new tmpl for this
@@ -66,23 +64,23 @@ func main() {
 	m.Get("/api/get/:label", func(params martini.Params) string {
 		label := params["label"][:maxLen(params["label"])]
 		todo := params["todo"][:maxLen(params["todo"])]
-		return apiGet(label, todo, mainLogger)
+		return apiGet(session, label, todo, mainLogger)
 	})
 
 	m.Get("/api/remove/:label/:id", func(params martini.Params) string {
 		label := params["label"][:maxLen(params["label"])]
 		id := params["id"][:maxLen(params["id"])]
-		return apiRemove(label, id, mainLogger)
+		return apiRemove(session, label, id, mainLogger)
 	})
 
 	m.Get("/api/add/:label/:todo", func(params martini.Params) string {
 		label := params["label"][:maxLen(params["label"])]
 		todo := params["todo"][:maxLen(params["todo"])]
-		return apiAdd(label, todo, mainLogger)
+		return apiAdd(session, label, todo, mainLogger)
 	})
 
 	m.Get("/api/count", func() string {
-		return apiCount(mainLogger)
+		return apiCount(session, mainLogger)
 	})
 
 	m.Run()

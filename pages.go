@@ -1,5 +1,7 @@
 package main
 
+import "gopkg.in/mgo.v2"
+
 type TempIndex struct {
 	ListCount string
 }
@@ -9,8 +11,8 @@ type TempList struct {
 	Todos []TodoItem
 }
 
-func getIndexInfo() (int, error) {
-	_, count, err := dbCountLists()
+func getIndexInfo(session *mgo.Session) (int, error) {
+	_, count, err := dbCountLists(session)
 	if err != nil {
 		return 0, err
 	}
@@ -18,8 +20,8 @@ func getIndexInfo() (int, error) {
 	return count, nil
 }
 
-func getListValues(label string) ([]TodoItem, error) {
-	list, err := dbQuery(label)
+func getListValues(session *mgo.Session, label string) ([]TodoItem, error) {
+	list, err := dbQuery(session, label)
 	if err != nil {
 		return nil, err
 	}

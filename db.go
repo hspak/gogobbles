@@ -10,65 +10,40 @@ type MongoTodo struct {
 	Text string        `bson:"text"`
 }
 
-func dbCheck() error {
-	session, err := mgo.Dial("localhost")
-	if err != nil {
-		return err
-	}
-	session.Close()
-	return nil
-}
-
-func dbInsert(label string, todo MongoTodo) error {
-	session, err := mgo.Dial("localhost")
-	if err != nil {
-		return err
-	}
-	defer session.Close()
-
-	c := session.DB("gotest").C(label)
-	if err = c.Insert(&todo); err != nil {
-		return err
-	}
-	return nil
-}
-
-func dbRemove(label string, todo MongoTodo) error {
-	session, err := mgo.Dial("localhost")
-	if err != nil {
-		return err
-	}
-	defer session.Close()
-
-	c := session.DB("gotest").C(label)
-	if err = c.Remove(bson.M{"_id": todo.Id}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func dbQuery(label string) ([]MongoTodo, error) {
+func dbOpen() (*mgo.Session, error) {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		return nil, err
 	}
-	defer session.Close()
+	return session, nil
+}
 
+func dbInsert(session *mgo.Session, label string, todo MongoTodo) error {
+	c := session.DB("gotest").C(label)
+	if err := c.Insert(&todo); err != nil {
+		return err
+	}
+	return nil
+}
+
+func dbRemove(session *mgo.Session, label string, todo MongoTodo) error {
+	c := session.DB("gotest").C(label)
+	if err := c.Remove(bson.M{"_id": todo.Id}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func dbQuery(session *mgo.Session, label string) ([]MongoTodo, error) {
 	results := make([]MongoTodo, 0)
 	c := session.DB("gotest").C(label)
-	if err = c.Find(bson.M{}).All(&results); err != nil {
+	if err := c.Find(bson.M{}).All(&results); err != nil {
 		return nil, err
 	}
 	return results, nil
 }
 
-func dbCountLists() (map[string]int, int, error) {
-	session, err := mgo.Dial("localhost")
-	if err != nil {
-		return nil, 0, err
-	}
-	defer session.Close()
-
+func dbCountLists(session *mgo.Session) (map[string]int, int, error) {
 	listNames, err := session.DB("gotest").CollectionNames()
 	if err != nil {
 		return nil, 0, err
