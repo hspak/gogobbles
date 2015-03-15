@@ -9,8 +9,7 @@ import (
 	"github.com/martini-contrib/render"
 )
 
-// ~150k list limit
-
+// TODO: this is lazy
 func maxLen(s string) int {
 	if len(s) > 80 {
 		return 80
@@ -35,12 +34,14 @@ func main() {
 
 	// Site
 	m.Get("/", func(r render.Render) {
-		count, err := getIndexInfo(session)
+		list, count, err := getIndexInfo(session)
 		if err != nil {
 			mainLogger.Err("Error: db query went bad: " + err.Error())
 			r.HTML(500, "index", nil) // make a new tmpl for this
 		}
-		r.HTML(200, "index", TempIndex{ListCount: strconv.Itoa(count)})
+
+		r.HTML(200, "index",
+			TempIndex{ListCount: strconv.Itoa(count), AllLists: list})
 	})
 
 	m.Get("/api", func(r render.Render) {

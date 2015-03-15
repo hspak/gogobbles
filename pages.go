@@ -4,6 +4,7 @@ import "gopkg.in/mgo.v2"
 
 type TempIndex struct {
 	ListCount string
+	AllLists  map[string]int
 }
 
 type TempList struct {
@@ -11,13 +12,12 @@ type TempList struct {
 	Todos []TodoItem
 }
 
-func getIndexInfo(session *mgo.Session) (int, error) {
-	_, count, err := dbCountLists(session)
+func getIndexInfo(session *mgo.Session) (map[string]int, int, error) {
+	lists, count, err := dbCountLists(session)
 	if err != nil {
-		return 0, err
+		return nil, 0, err
 	}
-
-	return count, nil
+	return lists, count, nil
 }
 
 func getListValues(session *mgo.Session, label string) ([]TodoItem, error) {

@@ -35,3 +35,7 @@ html {
   display: inline-block;
   vertical-align: middle;
 }
+
+.list-urls {
+  display: none;
+}
