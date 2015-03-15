@@ -37,7 +37,7 @@ func apiGet(s *mgo.Session, label string, todo string, mlog *syslog.Writer) stri
 		Todos []TodoItem
 	}{label, count, todos}
 
-	out, err := json.Marshal(jsonOut)
+	out, err := json.MarshalIndent(jsonOut, "", "  ")
 	if err != nil {
 		mlog.Err("Error: could not properly construct json")
 		return "Error"
@@ -94,7 +94,7 @@ func apiCount(s *mgo.Session, mlog *syslog.Writer) string {
 		i += 1
 	}
 
-	out, err := json.Marshal(countOut)
+	out, err := json.MarshalIndent(countOut, "", "  ")
 	if err != nil {
 		mlog.Err("Error: could not properly construct json")
 		return "Error"
