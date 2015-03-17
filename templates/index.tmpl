@@ -24,6 +24,7 @@
       </div>
       <input autofocus id="st-search-input" class="st-search-input searchBox textbox" type="text" placeholder="Create or search for a list" onkeydown="newTodo(event)"></input></input><label id="inputHelper"></label>
       <p class="tip">{{ .ListCount }} todos created and counting!</p>
+      <div id="st-results-container"></div>
 
       <div class="list-urls">
         {{ range $key, $val := .AllLists }}
