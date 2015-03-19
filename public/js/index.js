@@ -1,4 +1,4 @@
-redifyHold = false;
+var redifyHold = false;
 
 function redify(input) {
   redifyHold = true;
@@ -14,7 +14,7 @@ function redify(input) {
 }
 
 function newTodo(event) {
-  input = document.getElementsByClassName("searchBox")[0];
+  var input = document.getElementsByClassName("searchBox")[0];
   if (event.keyCode == 13 && input.value.length > 0) {
     if (! /^[a-zA-Z0-9~!@$\^&\*\(\)\{\}\[\]\+\-\=\_\,\<\>\"\'\:\;\`\|]+$/.test(input.value)) {
       if (redifyHold == false) {
