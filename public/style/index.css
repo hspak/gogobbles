@@ -24,9 +24,11 @@ html {
   font-size: 50px;
   font-family: "Helvetica-Roman";
   display: inline-block;
-  transform: translateY(30%);
   color: #826159;
   margin: 0 0 40px 0;
+  transform: translateY(30%);
+  -moz-transform: translateY(30%);
+  -webkit-transform: translateY(30%);
 }
 
 #turkey {

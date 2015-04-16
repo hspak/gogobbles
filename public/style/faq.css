@@ -18,6 +18,8 @@ html {
   font-family: "Helvetica-Roman", san-serif;
   display: inline-block;
   transform: translateY(30%);
+  -moz-transform: translateY(30%);
+  -webkit-transform: translateY(30%);
   color: #826159;
   margin: 0 0 40px 0;
 }
